@@ -14,7 +14,8 @@ repositories {
 dependencies {
     compile(
             "org.projectlombok:lombok:1.16.10",
-            "com.google.guava:guava:20.0"
+            "com.google.guava:guava:20.0",
+            "io.atlassian.fugue:fugue:4.3.1"
     )
     testCompile(
             "junit:junit:4.12",
