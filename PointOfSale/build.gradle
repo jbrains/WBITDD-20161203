@@ -12,6 +12,10 @@ repositories {
 }
 
 dependencies {
+    compile(
+            "org.projectlombok:lombok:1.16.10",
+            "com.google.guava:guava:20.0"
+    )
     testCompile(
             "junit:junit:4.12",
             "org.jmock:jmock-junit4:2.8.2",
