@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.function.Consumer;
+
 public class SellOneItemControllerTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
@@ -85,11 +87,12 @@ public class SellOneItemControllerTest {
                 return;
             }
 
-            final Option<Price> maybePrice = catalog.findPrice(barcode);
-            if (maybePrice.isEmpty())
-                display.displayProductNotFoundMessage(barcode);
-            else
-                display.displayPrice(maybePrice.get());
+            // REFACTOR Pushing the responsibility down into Display?
+            catalog.findPrice(barcode)
+                    .<Consumer<Display>>fold(
+                            () -> ((display) -> display.displayProductNotFoundMessage(barcode)),
+                            (price) -> ((display) -> display.displayPrice(price))
+                    ).accept(display);
         }
     }
 
