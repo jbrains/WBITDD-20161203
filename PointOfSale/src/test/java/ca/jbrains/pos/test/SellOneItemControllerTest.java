@@ -48,11 +48,14 @@ public class SellOneItemControllerTest {
 
     @Test
     public void emptyBarcode() throws Exception {
-
         context.checking(new Expectations() {{
             oneOf(display).displayScannedEmptyBarcodeMessage();
         }});
 
+        // REFACTOR Move this test to a separate class _or_
+        // move this behavior to another location, because
+        // only this test wants to use a different Catalog
+        // (_or_, if you prefer, a different Controller).
         controller = new SellOneItemController(null, display);
 
         controller.onBarcode("");
