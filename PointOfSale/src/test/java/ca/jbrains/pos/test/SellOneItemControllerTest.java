@@ -60,10 +60,6 @@ public class SellOneItemControllerTest {
         controller.onBarcode("");
     }
 
-    public interface Catalog {
-        Option<Price> findPrice(String barcode);
-    }
-
     public interface Display {
         void displayPrice(Price price);
 

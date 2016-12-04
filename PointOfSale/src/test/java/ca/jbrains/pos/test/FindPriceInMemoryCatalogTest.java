@@ -7,27 +7,20 @@ import org.junit.Test;
 
 import java.util.Map;
 
-public class FindPriceInMemoryCatalogTest {
-    @Test
-    public void productFound() throws Exception {
-        Assert.assertEquals(
-                Option.some(Price.cents(1250)),
-                new InMemoryCatalog(
-                        ImmutableMap.of("12345", Price.cents(1250))
-                ).findPrice("12345")
+public class FindPriceInMemoryCatalogTest extends FindPriceInCatalogContract {
+    @Override
+    protected Catalog catalogWith(String barcode, Price matchingPrice) {
+        return new InMemoryCatalog(
+                ImmutableMap.of(barcode, matchingPrice)
         );
     }
 
-    @Test
-    public void productNotFound() throws Exception {
-        Assert.assertEquals(
-                Option.none(),
-                new InMemoryCatalog(ImmutableMap.of())
-                        .findPrice("::barcode not found::")
-        );
+    @Override
+    protected Catalog catalogWithout(String barcodeToAvoid) {
+        return new InMemoryCatalog(ImmutableMap.of());
     }
 
-    private static class InMemoryCatalog {
+    private static class InMemoryCatalog implements Catalog {
         private final Map<String, Price> pricesByBarcode;
 
         public InMemoryCatalog(Map<String, Price> pricesByBarcode) {
