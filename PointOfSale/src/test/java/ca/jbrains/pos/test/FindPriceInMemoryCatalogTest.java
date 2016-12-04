@@ -1,11 +1,9 @@
 package ca.jbrains.pos.test;
 
+import ca.jbrains.pos.Catalog;
+import ca.jbrains.pos.InMemoryCatalog;
+import ca.jbrains.pos.Price;
 import com.google.common.collect.ImmutableMap;
-import io.atlassian.fugue.Option;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.Map;
 
 public class FindPriceInMemoryCatalogTest extends FindPriceInCatalogContract {
     @Override
@@ -20,15 +18,4 @@ public class FindPriceInMemoryCatalogTest extends FindPriceInCatalogContract {
         return new InMemoryCatalog(ImmutableMap.of());
     }
 
-    private static class InMemoryCatalog implements Catalog {
-        private final Map<String, Price> pricesByBarcode;
-
-        public InMemoryCatalog(Map<String, Price> pricesByBarcode) {
-            this.pricesByBarcode = pricesByBarcode;
-        }
-
-        public Option<Price> findPrice(String barcode) {
-            return Option.option(pricesByBarcode.get(barcode));
-        }
-    }
 }

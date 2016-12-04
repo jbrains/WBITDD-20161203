@@ -1,5 +1,9 @@
 package ca.jbrains.pos.test;
 
+import ca.jbrains.pos.Catalog;
+import ca.jbrains.pos.Display;
+import ca.jbrains.pos.Price;
+import ca.jbrains.pos.SellOneItemController;
 import io.atlassian.fugue.Option;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -58,36 +62,6 @@ public class SellOneItemControllerTest {
         controller = new SellOneItemController(null, display);
 
         controller.onBarcode("");
-    }
-
-    public static class SellOneItemController {
-        private final Catalog catalog;
-        private final Display display;
-
-        public SellOneItemController(Catalog catalog, Display display) {
-            this.catalog = catalog;
-            this.display = display;
-        }
-
-        public void onBarcode(String barcode) {
-            if ("".equals(barcode)) {
-                display.displayScannedEmptyBarcodeMessage();
-                return;
-            }
-
-            catalog.findPrice(barcode)
-                    .toRight(() -> barcode)
-                    .bimap(
-                            (barcodeNotFound) -> {
-                                display.displayProductNotFoundMessage(barcodeNotFound);
-                                return true;
-                            },
-                            (price) -> {
-                                display.displayPrice(price);
-                                return true;
-                            });
-
-        }
     }
 
 }
