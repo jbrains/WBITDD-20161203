@@ -1,7 +1,6 @@
 package ca.jbrains.pos.test;
 
 import io.atlassian.fugue.Option;
-import lombok.Value;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;
@@ -103,8 +102,4 @@ public class SellOneItemControllerTest {
         }
     }
 
-    @Value(staticConstructor = "cents")
-    public static class Price {
-        private final int centsValue;
-    }
 }
