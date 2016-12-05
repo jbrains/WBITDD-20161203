@@ -1,6 +1,7 @@
 package ca.jbrains.pos;
 
-import io.atlassian.fugue.Option;
+
+import javaslang.control.Option;
 
 import java.util.Map;
 
@@ -12,6 +13,6 @@ public class InMemoryCatalog implements Catalog {
     }
 
     public Option<Price> findPrice(String barcode) {
-        return Option.option(pricesByBarcode.get(barcode));
+        return Option.of(pricesByBarcode.get(barcode));
     }
 }

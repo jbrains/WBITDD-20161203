@@ -2,7 +2,7 @@ package ca.jbrains.pos.test;
 
 import ca.jbrains.pos.Catalog;
 import ca.jbrains.pos.Price;
-import io.atlassian.fugue.Option;
+import javaslang.control.Option;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -4,7 +4,7 @@ import ca.jbrains.pos.Catalog;
 import ca.jbrains.pos.Display;
 import ca.jbrains.pos.Price;
 import ca.jbrains.pos.SellOneItemController;
-import io.atlassian.fugue.Option;
+import javaslang.control.Option;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;

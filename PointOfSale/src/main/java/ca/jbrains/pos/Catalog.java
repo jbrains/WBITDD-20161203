@@ -1,6 +1,6 @@
 package ca.jbrains.pos;
 
-import io.atlassian.fugue.Option;
+import javaslang.control.Option;
 
 public interface Catalog {
     Option<Price> findPrice(String barcode);
