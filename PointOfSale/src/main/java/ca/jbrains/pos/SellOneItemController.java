@@ -1,11 +1,5 @@
 package ca.jbrains.pos;
 
-import javaslang.API;
-
-import static javaslang.API.*;
-import static javaslang.Patterns.None;
-import static javaslang.Patterns.Some;
-
 public class SellOneItemController {
     private final Catalog catalog;
     private final Display display;
@@ -21,9 +15,9 @@ public class SellOneItemController {
             return;
         }
 
-        Match(catalog.findPrice(barcode)).of(
-                Case(Some($()), price -> run(() -> display.displayPrice(price))),
-                Case(None(), o -> run(() -> display.displayProductNotFoundMessage(barcode)))
+        catalog.findPrice(barcode).toRight(barcode).bimap(
+                b -> { display.displayProductNotFoundMessage(b); return null; },
+                p -> { display.displayPrice(p); return null; }
         );
     }
 }

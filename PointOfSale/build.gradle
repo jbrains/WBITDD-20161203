@@ -15,7 +15,7 @@ dependencies {
     compile(
             "org.projectlombok:lombok:1.16.10",
             "com.google.guava:guava:20.0",
-            "io.javaslang:javaslang:2.0.5"
+            "io.javaslang:javaslang:2.1.0-alpha"
     )
     testCompile(
             "junit:junit:4.12",
